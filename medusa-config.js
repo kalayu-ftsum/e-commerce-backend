@@ -43,6 +43,13 @@ const plugins = [
     },
   },
   {
+    resolve: `medusa-payment-stripe`,
+    options: {
+      api_key: process.env.STRIPE_API_KEY,
+      webhook_secret: process.env.STRIPE_WEBHOOK_SECRET,
+    },
+  },
+  {
     resolve: "@medusajs/admin",
     /** @type {import('@medusajs/admin').PluginOptions} */
     options: {
@@ -52,6 +59,7 @@ const plugins = [
       },
     },
   },
+
 ];
 
 const modules = {
@@ -76,6 +84,13 @@ const projectConfig = {
   store_cors: STORE_CORS,
   database_url: DATABASE_URL,
   admin_cors: ADMIN_CORS,
+  database_extra: process.env.NODE_ENV !== "development" ?
+      {
+        ssl: {
+          rejectUnauthorized: false,
+        },
+      } : {},
+
   // Uncomment the following lines to enable REDIS
   // redis_url: REDIS_URL
 };

@@ -1,4 +1,4 @@
-let ignore = [`**/dist`]
+let ignore = [`**/dist`,`**/node_modules`]
 
 // Jest needs to compile this code, but generally we don't want this copied
 // to output folders
